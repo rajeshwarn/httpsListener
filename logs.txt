@@ -1,13 +1,5 @@
-{"abc":"efg"}
-{"abc":"efg"}
-{"abc":"efg"}
-{"abc":"efg"}
-{"aa":"sad"}
-{"aa":"sad"}
-{}
-{}
-{"fsdnf":"sdkfv"}
-{"fsdnf":"sdkfv"}
-{"fsdnf":"terry"}
-{"fsdnf":"vaibhav"}
-{"a":"hello"}
+"[1542599973680] Event Source: hello Event Type: goodbye Event Address: see you later"
+"[Mon Nov 19 2018 15:04:36 GMT+1100 (AUS Eastern Daylight Time)]|Source: hello"
+"[Mon Nov 19 2018 15:04:55 GMT+1100 (AUS Eastern Daylight Time)]|Source: Excel|Type: goodbye|Address: see you later"
+"[Mon Nov 19 2018 15:05:41 GMT+1100 (AUS Eastern Daylight Time)]|Source: Excel|Type: goodbye|Address: see you later|"
+"[Mon Nov 19 2018 15:06:02 GMT+1100 (AUS Eastern Daylight Time)]|Source: Excel|Type: goodbye|Address: see you later|"

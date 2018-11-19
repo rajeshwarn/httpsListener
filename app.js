@@ -1,24 +1,26 @@
 var fs = require('fs'),
-https = require('https'),
-express = require('express'),
-app = express();
+  //https = require('https'),
+  express = require('express'),
+  app = express();
 var bodyParser = require('body-parser');
-
+http = require('http')
 
 //app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 //enable cors
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
-https.createServer({
-  key: fs.readFileSync('./sslcert/key.key'),
-  cert: fs.readFileSync('./sslcert/certificate.crt')
-}, app).listen(8080);
+http.createServer(app).listen(8080);
+
+// https.createServer({
+//   key: fs.readFileSync('./sslcert/key.key'),
+//   cert: fs.readFileSync('./sslcert/certificate.crt')
+// }, app).listen(8080);
 
 app.get('/', function (req, res) {
   res.header('Content-type', 'text/html');
@@ -26,17 +28,47 @@ app.get('/', function (req, res) {
 });
 
 
-app.post('/', function(req, res) {
+app.post('/', function (req, res) {
   console.log(req.body);
+
+  //var body = JSON.parse(req.body);
+  var body = req.body;
+  var logoutput = "[" + new Date() + "]";
+  console.log(logoutput);
+  if (body.a != undefined) {
+    logoutput = logoutput + "|Source: " + body.a;
+    console.log(logoutput);
+
+
+    if (body.a == "Excel") {
+
+      if (body.b != undefined) {
+        logoutput = logoutput + "|Type: " + body.b;
+        console.log(logoutput);
+      };
+
+      if (body.c != undefined) {
+        logoutput = logoutput + "|Address: " + body.c;
+        console.log(logoutput);
+      };
+
+      if (body.d != undefined) {
+        logoutput = logoutput + "|Values: " + body.d;
+        console.log(logoutput);
+      };
+    };
+    logoutput = logoutput + "|";
+    console.log(logoutput);
+  };
 
   console.log("write-to-file activated");
 
-  fs.appendFile('logs.txt', JSON.stringify(req.body) + "\n", function (err) {
+  fs.appendFile('logs.txt', JSON.stringify(logoutput) + "\n", function (err) {
     if (err) throw err;
     console.log('Append File Saved!');
     res.write(JSON.stringify(req.body));
     res.end();
-});
+  });
 
 });
 
